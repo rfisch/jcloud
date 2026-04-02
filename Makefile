@@ -13,7 +13,8 @@
        insight-tables insight-query insight-os insight-encryption insight-apps \
        list-events event-logins event-count \
        list-authn-policies get-authn-policy create-authn-policy update-authn-policy \
-       list-ip-lists get-ip-list create-ip-list
+       list-ip-lists get-ip-list create-ip-list \
+       soc2-report
 
 VENV := .venv
 PYTHON := $(VENV)/bin/python
@@ -270,6 +271,11 @@ get-ip-list: ## Get IP list details (LIST=<id>)
 
 create-ip-list: ## Create IP list (NAME=<name> IPS=<ip1,ip2,...>)
 	$(JCLOUD) ip-lists create --name '$(NAME)' --ips '$(IPS)'
+
+# ── SOC 2 Compliance ───────────────────────────────────────────────
+
+soc2-report: ## Run SOC 2 Type II compliance report (SYSTEM=<optional hostname|id>)
+	$(JCLOUD) soc2 report $(if $(SYSTEM),--system $(SYSTEM))
 
 # ── API Metadata ────────────────────────────────────────────────────
 

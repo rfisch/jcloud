@@ -12,6 +12,7 @@ from jcloud.cli.iplists import ip_lists
 from jcloud.cli.meta import meta
 from jcloud.cli.policies import policies
 from jcloud.cli.radius import radius
+from jcloud.cli.soc2 import soc2
 from jcloud.cli.systems import systems
 from jcloud.cli.users import users
 
@@ -47,6 +48,7 @@ cli.add_command(events)
 cli.add_command(insights)
 cli.add_command(ip_lists)
 cli.add_command(meta)
+cli.add_command(soc2)
 
 
 @cli.command("sync-state")

@@ -160,6 +160,18 @@ Disable SSH root login on a Mac. Can be run locally or pushed remotely via JumpC
 
 ## Compliance & Auditing
 
+### `/soc2-report`
+Generate a SOC 2 Type II compliance report. Evaluates all managed systems against SOC 2 controls (OS currency CC7.1, patch management CC8.1, endpoint protection CC6.8) and produces a consolidated findings report with per-system PASS/FAIL results, compliance percentages, and remediation recommendations.
+
+**Use when:** Preparing for SOC 2 audit, monthly compliance checks, or generating evidence for auditors.
+
+**Sample prompts:**
+- `/soc2-report`
+- "Run the SOC 2 compliance report"
+- "Check all systems against SOC 2 controls"
+- "Generate a SOC 2 report for the auditor"
+- "Run SOC 2 compliance check on a specific machine"
+
 ### `/jc-status`
 Quick health check: all users, systems, bindings. Flags issues like unbound users, staged accounts, missing devices. Compares live data against the state file.
 

@@ -10,3 +10,4 @@ build/
 .pytest_cache/
 .history/
 .claude/state.md
+soc2-report-*.json

@@ -30,17 +30,14 @@ Track Windows users and their JumpCloud IDs in `.claude/state.md`.
 
 ### Phase 1: Windows OOBE
 
-We create a temporary local account to get past setup. JumpCloud will create the real work account later.
+The employee signs in with their personal Microsoft account to get past the initial setup. Windows 11 requires an online account during OOBE — there is no reliable way to bypass this. JumpCloud will create the real work account later.
 
 1. Power on the machine
 2. Select region and keyboard layout
-3. When it asks to connect to Wi-Fi, press **Shift + F10** to open a Command Prompt
-4. Type `OOBE\BYPASSNRO` and press Enter — the machine will reboot
-5. After reboot, go through region/keyboard again
-6. On the network screen, click **"I don't have internet"**, then **"Continue with limited setup"**
-7. Create a temporary local account (e.g., name: `setup`, no password)
-8. Decline everything (privacy settings, etc.)
-9. Once at the desktop, connect to Wi-Fi
+3. Connect to Wi-Fi
+4. Sign in with a **personal Microsoft account** (any Microsoft/Outlook/Hotmail account the employee already has)
+5. Complete the rest of OOBE (privacy settings, etc. — decline everything)
+6. Wait for Windows to finish setup and reach the desktop
 
 ### Phase 2: Install JumpCloud Agent
 
