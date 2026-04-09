@@ -74,6 +74,7 @@ def erase_system(ctx: click.Context, system: str):
 
 @systems.command("restart")
 @click.argument("system")
+@click.confirmation_option(prompt="Are you sure you want to RESTART this system?")
 @click.pass_context
 def restart_system(ctx: click.Context, system: str):
     """Restart a system remotely."""
@@ -87,6 +88,7 @@ def restart_system(ctx: click.Context, system: str):
 
 @systems.command("shutdown")
 @click.argument("system")
+@click.confirmation_option(prompt="Are you sure you want to SHUT DOWN this system?")
 @click.pass_context
 def shutdown_system(ctx: click.Context, system: str):
     """Shut down a system remotely."""

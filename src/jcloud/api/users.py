@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from datetime import datetime, timedelta, timezone
+
 import click
 
 from jcloud.client import JumpCloudClient
@@ -49,12 +51,23 @@ def lock_user(client: JumpCloudClient, user_id: str) -> dict:
     return update_user(client, user_id, account_locked=True)
 
 
-def unlock_user(client: JumpCloudClient, user_id: str) -> dict:
-    return update_user(client, user_id, account_locked=False)
+def unlock_user(client: JumpCloudClient, user_id: str) -> None:
+    """Unlock a user account using the dedicated unlock endpoint."""
+    resp = client.post(f"/systemusers/{user_id}/unlock", json={})
+    if resp.status_code == 400 and "already unlocked" in resp.text.lower():
+        return
+    resp.raise_for_status()
 
 
-def reset_mfa(client: JumpCloudClient, user_id: str) -> None:
-    resp = client.post(f"/systemusers/{user_id}/resetmfa", json={"exclusion": False})
+def reset_mfa(client: JumpCloudClient, user_id: str, grace_days: int = 7) -> None:
+    """Reset MFA enrollment and give user a grace period to re-enroll."""
+    exclusion_until = (
+        datetime.now(timezone.utc) + timedelta(days=grace_days)
+    ).isoformat()
+    resp = client.post(
+        f"/systemusers/{user_id}/resetmfa",
+        json={"exclusion": True, "exclusionUntil": exclusion_until},
+    )
     resp.raise_for_status()
 
 

@@ -83,12 +83,13 @@ def unlock(ctx: click.Context, user_id: str):
 
 @users.command("reset-mfa")
 @click.argument("user_id")
+@click.confirmation_option(prompt="Reset MFA enrollment? User must re-enroll.")
 @click.pass_context
 def reset_mfa(ctx: click.Context, user_id: str):
-    """Reset MFA for a user."""
+    """Reset MFA for a user. Gives a 7-day grace period to re-enroll."""
     client = get_client(ctx)
     api.reset_mfa(client, user_id)
-    click.echo(f"MFA reset for user {user_id}")
+    click.echo(f"MFA reset for user {user_id} — 7-day grace period to re-enroll")
 
 
 @users.command("expire-password")
