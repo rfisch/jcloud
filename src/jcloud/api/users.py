@@ -54,7 +54,7 @@ def unlock_user(client: JumpCloudClient, user_id: str) -> dict:
 
 
 def reset_mfa(client: JumpCloudClient, user_id: str) -> None:
-    resp = client.post(f"/systemusers/{user_id}/resetmfa", json={"exclusion": True})
+    resp = client.post(f"/systemusers/{user_id}/resetmfa", json={"exclusion": False})
     resp.raise_for_status()
 
 
